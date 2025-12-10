@@ -12,23 +12,51 @@ const ChatBox = ({ onEnviarMessagem, desabilitado }) => {
   };
 
   return (
-    <div className="border-t border-gray-200 bg-gray50/80 p-4">
-      <form className="flex space-x-3" onSubmit={handleSubmit}>
-        <input
-          className="flex-1 px-5 py-3 bg-white border border-gray-300 rounded-full shadow-sm focus:ring-2 outline-none  focus:ring-purple-500"
-          type="text"
-          value={mensagem}
-          onChange={(e) => setMensagem(e.target.value)}
-          placeholder="Digite sua mensagem..."
-          disabled={desabilitado}
-        />
-        <button
-          type="submit"
-          disabled={desabilitado}
-          className="px-8 py-3 bg-gradient-to-r from-purple-500 to-emerald-500 hover:from-purple-600 hover:to-emerald-700 cursor-pointer text-white rounded-full disable:from-gray-400 disable:to-gray-300 disable:cursor-not-allowed"
-        >
-          Enviar
-        </button>
+    <div className="p-4 max-w-4xl mx-auto">
+      <form className="relative" onSubmit={handleSubmit}>
+        <div className="relative flex items-center">
+          <textarea
+            className="w-full px-4 py-3 pr-12 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors"
+            rows={1}
+            value={mensagem}
+            onChange={(e) => {
+              setMensagem(e.target.value);
+              // Auto-resize
+              e.target.style.height = "auto";
+              e.target.style.height = e.target.scrollHeight + "px";
+            }}
+            placeholder="Digite sua pergunta sobre receitas..."
+            disabled={desabilitado}
+            style={{ minHeight: "44px", maxHeight: "200px" }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                if (mensagem.trim()) {
+                  handleSubmit(e);
+                }
+              }
+            }}
+          />
+          <button
+            type="submit"
+            disabled={desabilitado || !mensagem.trim()}
+            className="absolute right-2 p-2 rounded-lg bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            <svg
+              className="w-4 h-4 text-gray-600 dark:text-gray-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+              />
+            </svg>
+          </button>
+        </div>
       </form>
     </div>
   );

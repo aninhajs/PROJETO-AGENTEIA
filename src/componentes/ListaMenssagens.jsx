@@ -13,26 +13,45 @@ const ListaMenssagens = ({ mensagens, loading }) => {
   }, [mensagens]);
 
   return (
-    <div className="flex-1 overflow-y-auto p-4 space-y-4 ">
-      {mensagens.map((mensagem) => (
-        // NO react toda vez que vouu usar um array e colocar as informações que estão no map eu preciso de uma key unica
-        // Esse mensagem está vindo do meu mensagem.jsx
-        <Mensagem key={mensagem.id} mensagem={mensagem} />
-      ))}
+    <div className="h-full overflow-y-auto custom-scroll px-4 py-4">
+      <div className="max-w-4xl mx-auto">
+        {mensagens.map((mensagem) => (
+          <Mensagem key={mensagem.id} mensagem={mensagem} />
+        ))}
 
-      {loading && (
-        <div className="flex justify-start  ">
-          <div className="bg-gray-50 rounded-2xl rounder-bl-none shadow-md border-gray-400">
-            <div className="flex space-x-2">
-              <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
-              <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse delay-100"></div>
-              <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse delay-200"></div>
+        {loading && (
+          <div className="px-4 py-6 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex items-start gap-4">
+              <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0">
+                <span className="text-white text-sm font-semibold">👨‍🍳</span>
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="font-semibold text-gray-900 dark:text-white">
+                    Dev Chef
+                  </span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                    está digitando...
+                  </span>
+                </div>
+                <div className="flex space-x-1">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <div
+                    className="w-2 h-2 bg-green-500 rounded-full animate-pulse"
+                    style={{ animationDelay: "0.2s" }}
+                  ></div>
+                  <div
+                    className="w-2 h-2 bg-green-500 rounded-full animate-pulse"
+                    style={{ animationDelay: "0.4s" }}
+                  ></div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <div ref={mensagemRef}></div>
+        <div ref={mensagemRef}></div>
+      </div>
     </div>
   );
 };

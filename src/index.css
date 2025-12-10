@@ -1,1 +1,225 @@
 @import "tailwindcss";
+
+/* Estilos personalizados para o tema ChatGPT */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  background-color: #f9fafb;
+}
+
+.dark body {
+  background-color: #1f2937;
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0;
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-thumb {
+  background: #4a5568;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #718096;
+}
+
+/* Animações suaves */
+.transition-colors {
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Estilos para o textarea auto-resize */
+textarea {
+  min-height: 44px;
+  max-height: 200px;
+  resize: none;
+  overflow-y: auto;
+  line-height: 1.5;
+}
+
+/* Prose styling para as mensagens */
+.prose p {
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+/* Hover effects */
+.hover\:shadow-lg:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Layout com altura fixa e scroll interno */
+.chat-layout {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.chat-messages {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.message-container {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* Responsividade para mobile */
+@media (max-width: 768px) {
+  html,
+  body {
+    background-color: #f9fafb !important;
+    overflow-x: hidden;
+  }
+
+  .dark html,
+  .dark body {
+    background-color: #1f2937 !important;
+  }
+
+  /* Container principal mobile */
+  .mobile-container {
+    width: 100% !important;
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    background-color: #f9fafb;
+  }
+
+  .dark .mobile-container {
+    background-color: #1f2937;
+  }
+
+  /* Ajuste para mobile touch */
+  .custom-scroll {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Sidebar mobile */
+  .mobile-sidebar {
+    position: fixed !important;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100vh;
+    z-index: 60;
+    transition: left 0.3s ease-in-out;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .mobile-sidebar.open {
+    left: 0 !important;
+  }
+
+  /* Área do chat mobile */
+  .mobile-chat {
+    width: 100% !important;
+    height: 100vh;
+    padding-top: 60px; /* Espaço para o toggle button */
+    background-color: #f9fafb;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dark .mobile-chat {
+    background-color: #1f2937;
+  }
+}
+
+/* Animações para os botões */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Melhor styling para o scroll */
+.custom-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e0 transparent;
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: #cbd5e0;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #a0aec0;
+}
+
+/* Dark mode scrollbar */
+.dark .custom-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dark .custom-scroll::-webkit-scrollbar-thumb {
+  background-color: #4a5568;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.dark .custom-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #718096;
+}
+
+/* Scroll suave para conteúdo longo */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Limita altura máxima das mensagens longas */
+.message-content {
+  max-height: 400px;
+  overflow-y: auto;
+}

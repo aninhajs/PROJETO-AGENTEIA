@@ -1,9 +1,8 @@
 import ChatReceitas from "./pages/ChatReceitas";
-import ListaMenssagens from "./componentes/ListaMenssagens";
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="w-full min-h-screen h-screen bg-gray-50 dark:bg-gray-800 transition-colors">
       <ChatReceitas />
     </div>
   );
