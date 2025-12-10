@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: dev-chef
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build:frontend
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: OPENAI_API_KEY
+        sync: false  # Você definirá isso manualmente no Render
