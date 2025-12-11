@@ -14,14 +14,14 @@ app.use(express.json());
 app.use(cors());
 
 // Servir arquivos estáticos do build do React
-app.use(express.static(path.join(__dirname, 'interfaces-receitas/dist')));
+app.use(express.static(path.join(__dirname, "interfaces-receitas/dist")));
 
 // Rotas da API
 app.use("/api/receitas", receitasRoutes);
 
 // Rota catch-all para SPA (Single Page Application)
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'interfaces-receitas/dist/index.html'));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "interfaces-receitas/dist/index.html"));
 });
 
 app.listen(PORT, () => {
