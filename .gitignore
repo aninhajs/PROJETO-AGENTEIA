@@ -12,9 +12,7 @@ node_modules
 interfaces-receitas/node_modules
 
 # Build outputs
-dist
 dist-ssr
-interfaces-receitas/dist
 build
 
 # Environment variables
