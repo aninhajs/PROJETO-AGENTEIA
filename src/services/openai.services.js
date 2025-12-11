@@ -9,6 +9,15 @@ const openai = new OpenAI({
 
 const obterRespostaReceita = async (pergunta) => {
   try {
+    // Verificar se a chave existe
+    if (
+      !process.env.OPENAI_API_KEY ||
+      process.env.OPENAI_API_KEY === "sua_chave_openai_aqui"
+    ) {
+      // Versão DEMO sem OpenAI
+      return gerarRespostaDEMO(pergunta);
+    }
+
     // Aqui é o que vou mandar para o chatgpt, a pergunta do usuério com o nosso código por baixo dos panos.
     const resposta = await openai.chat.completions.create({
       model: "gpt-4o-mini",
@@ -36,8 +45,22 @@ Insira espaçamento entre parágrafos diferentes, para tornar a leitura mais con
     return resposta.choices[0].message.content;
   } catch (error) {
     console.error("Erro ao obter resposta:", error);
-    throw new Error("Erro ao obter resposta do OpenAI");
+    // Fallback para versão DEMO em caso de erro
+    return gerarRespostaDEMO(pergunta);
   }
+};
+
+// Função DEMO - remove depois que tiver a chave real da OpenAI
+const gerarRespostaDEMO = (pergunta) => {
+  const receitasDEMO = [
+    "🍝 **Macarrão Italiano Simples**\n\n**Ingredientes:**\n- 200g macarrão\n- 3 dentes de alho\n- Azeite, sal, queijo parmesão\n\n**Modo de Preparo:**\n1. Cozinhe o macarrão al dente\n2. Refogue o alho no azeite\n3. Misture tudo e finalize com queijo!",
+
+    "🥗 **Salada Tropical Refrescante**\n\n**Ingredientes:**\n- Alface, tomate, abacaxi\n- Peito de frango grelhado\n- Molho de mostarda e mel\n\n**Modo de Preparo:**\n1. Monte a salada em camadas\n2. Adicione o frango em cubos\n3. Regue com o molho!",
+
+    "🍰 **Bolo de Chocolate Fácil**\n\n**Ingredientes:**\n- 2 xícaras de farinha\n- 1 xícara de açúcar\n- Chocolate em pó, ovos, leite\n\n**Modo de Preparo:**\n1. Misture todos os ingredientes\n2. Asse por 30 minutos a 180°C\n3. Cubra com ganache!",
+  ];
+
+  return receitasDEMO[Math.floor(Math.random() * receitasDEMO.length)];
 };
 
 export default { obterRespostaReceita };
