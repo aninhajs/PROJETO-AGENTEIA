@@ -1,7 +1,7 @@
 // Aqui vamos importar o axios e usar o dontenv para configurar a base URL da API
 import axios from "axios";
 // Usar URL relativa em produção, localhost em desenvolvimento
-const API_URL = import.meta.env.VITE_API_URL || '/api/';
+const API_URL = import.meta.env.VITE_API_URL || "/api/";
 
 // Criando Api
 export const Api = async (pergunta) => {
